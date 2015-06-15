@@ -1,0 +1,172 @@
+// Style description	: SASS Mixins
+// Style author			: Marc Andrew San Buenaventra
+// Created date			: 12.02.2015
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Check if border-box is required 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin include-border-box {
+	@if $border-box {
+		* {
+			border-sizing		: border-box;
+			-moz-box-sizing		: border-box;
+			-webkit-box-sizing	: border-box;
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Media Queries
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin media($media, $feature, $breakinpoint, $breakinpoint-2: 0) {
+	@if $media == false {
+		@if $feature == max {
+			@media (max-width: $breakinpoint) { @content; }
+		}
+		@else if $feature == min {
+			@media (min-width: $breakinpoint) { @content; }
+		}
+		@else if $feature == min-max {
+			@media (min-width: $breakinpoint) and (max-width: $breakinpoint-2) { @content; }
+		}
+		@else {
+			@content;
+		}
+	} 
+	@else {
+		@if $feature == max {
+			@media #{$media} and (max-width: $breakinpoint) { @content; }
+		}
+		@else if $feature == min {
+			@media #{$media} and (min-width: $breakinpoint) { @content; }
+		}
+		@else if $feature == min-max {
+			@media #{$media} and (min-width: $breakinpoint) and (max-width: $breakinpoint-2) { @content; }
+		}
+		@else {
+			@content;
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Pixel Ratio, Retina/HD Images.
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin ratio($breakinpoint: 0, $breakinpoint-2: 0) {
+	@if not $breakinpoint == 0 and $breakinpoint-2 == 0 {
+		@media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (max-width: $breakinpoint-2),
+			   only screen and (   -moz-min-device-pixel-ratio: 1.5) and (max-width: $breakinpoint-2),
+			   only screen and (     -o-min-device-pixel-ratio: 3/2) and (max-width: $breakinpoint-2),
+			   only screen and (        min-device-pixel-ratio: 1.5) and (max-width: $breakinpoint-2),
+			   only screen and (                min-resolution: 144dpi) and (min-width: $breakinpoint-2) { @content; }
+	}
+	@else if not $breakinpoint == 0 and not $breakinpoint-2 == 0 {
+		@media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: $breakinpoint) and (max-width: $breakinpoint-2),
+			   only screen and (   -moz-min-device-pixel-ratio: 1.5) and (min-width: $breakinpoint) and (max-width: $breakinpoint-2),
+			   only screen and (     -o-min-device-pixel-ratio: 3/2) and (min-width: $breakinpoint) and (max-width: $breakinpoint-2),
+			   only screen and (        min-device-pixel-ratio: 1.5) and (min-width: $breakinpoint) and (max-width: $breakinpoint-2),
+			   only screen and (                min-resolution: 144dpi) and (min-width: $breakinpoint) and (max-width: $breakinpoint-2) { @content; }
+	}
+	@else {
+		@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+			   only screen and (   -moz-min-device-pixel-ratio: 1.5),
+			   only screen and (     -o-min-device-pixel-ratio: 3/2),
+			   only screen and (        min-device-pixel-ratio: 1.5),
+			   only screen and (                min-resolution: 144dpi) { @content; }
+	}
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Text Overflow
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin text-truncate {
+	overflow		: hidden;
+	text-overflow	: ellipsis;
+	white-space		: nowrap;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Border Radius
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin border-radius($radius) {
+	-webkit-border-radius				: unit($radius);
+	-moz-border-radius					: unit($radius);
+	-ms-border-radius					: unit($radius);
+	border-radius						: unit($radius);
+}
+
+@mixin border-top-radius($topradius) {
+	-webkit-border-top-right-radius		: unit($topradius);
+	border-top-right-radius				: unit($topradius);
+	-webkit-border-top-left-radius		: unit($topradius);
+	border-top-left-radius				: unit($topradius);
+}
+
+@mixin border-right-radius($rightradius) {
+	-webkit-border-bottom-right-radius	: unit($rightradius);
+	border-bottom-right-radius			: unit($rightradius);
+	-webkit-border-top-right-radius		: unit($rightradius);
+	border-top-right-radius				: unit($rightradius);
+}
+
+@mixin border-bottom-radius($bottomradius) {
+	-webkit-border-bottom-right-radius	: unit($bottomradius);
+	border-bottom-right-radius			: unit($bottomradius);
+	-webkit-border-bottom-left-radius	: unit($bottomradius);
+	border-bottom-left-radius			: unit($bottomradius);
+}
+
+@mixin border-left-radius($leftradius) {
+	-webkit-border-bottom-left-radius	: unit($leftradius);
+	border-bottom-left-radius			: unit($leftradius);
+	-webkit-border-top-left-radius		: unit($leftradius);
+	border-top-left-radius				: unit($leftradius);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Opacity
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin opacity($opacity) {
+	opacity		: $opacity;
+	$opacity-ie	: $opacity * 100;
+	filter		: alpha(opacity=$opacity-ie);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Clearfix
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@mixin cf() {
+	&:before,
+	&:after {
+		content	: "";
+		display	: block;
+	}
+	&:after {
+		clear	: both;
+	}
+}
+
+@mixin cfbefore() {
+	&:before {
+		content	: "";
+		display	: block;
+		clear	: both;
+	}
+}
+
+@mixin cfafter() {
+	&:after {
+		content	: "";
+		display	: block;
+		clear	: both;
+	}
+}
+
+

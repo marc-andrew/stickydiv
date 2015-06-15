@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+
+	<meta name="description"	content="Sticky Div jQuery Plugin" />
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="js/jquery.stickydiv.js"></script>
+
+	<title>Index Page</title>
+</head>
+
+<body id="index" class="browse">
+
+	<div id="page">
+
+		<!-- Start Header -->
+		<div id="header">
+	<h1>Sticky Div jQuery Plugin</h1>
+
+	<a href="https://github.com/marc-andrew/stickydiv" title="Fork on GitHub">Fork on GitHub</a>
+</div>
+		<!-- End Header -->
+
+		<!-- Start Main -->
+		<div id="main" class="container">
+
+			
+
+					<div id="left_nav">
+						<ul>
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+						</ul>
+					</div>
+
+					<script>
+						$(document).ready(function(){
+							$('#left_nav').stickydiv();
+						});
+					</script>
+
+				
+
+		</div>
+		<!-- End Main -->
+
+		<!-- Start Footer -->
+		<div id="footer">
+	
+</div>
+
+<script src="//localhost:35729/livereload.js"></script>
+		<!-- End Footer -->
+
+	</div>
+
+</body>
+</html>
