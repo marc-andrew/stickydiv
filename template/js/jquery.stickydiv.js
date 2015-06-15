@@ -10,7 +10,7 @@ MIT License (http://www.opensource.org/licenses/mit-license.html)
 
 ;(function($){
 
-	$.fn.stickydiv = function(options){
+	$.fn.stickydiv = function(){
 
 		/**
 		 * Start Sticky Div
